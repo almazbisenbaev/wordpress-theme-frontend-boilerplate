@@ -1,0 +1,54 @@
+.elementor-widget-text-editor {
+
+    // Prevent line height change caused by <sup>
+    sup { 
+        vertical-align: top; 
+        position: relative; 
+        top: -0.5em; 
+    }
+
+
+//     h1, h2, h3, h4, h5, h6 {
+//         margin-top: 0;
+//         margin-bottom: 0.5em;
+
+//         p + &, figure + &, hr + & {
+//             margin-top: 0.75em;
+//         }
+//     }
+
+
+    p {
+        margin: 0;
+        margin-bottom: 0.75em;
+    }
+    
+//     ul, ol {
+//         margin: 0;
+//         margin-bottom: 1em;
+
+//         p + &, figure + &, hr + &, table + &,
+//         h1 + &, h2 + &, h3 + &, h4 + &, h5 + &, h6 + & {
+//             margin-top: 0.75em;
+//         }
+
+//         > li {
+//             margin-bottom: 0.3em;
+//         }
+//     }
+
+//     table {
+//         text-align: left;
+//         border-collapse: collapse;
+//         border-radius: 4px;
+        
+//         width: 100%;
+
+//         td {
+//             border: 1px solid rgba(0,0,0,0.1);
+//             vertical-align: top;
+//             padding: 5px;
+//         }
+//     }
+
+}

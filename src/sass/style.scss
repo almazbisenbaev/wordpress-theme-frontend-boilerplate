@@ -1,0 +1,124 @@
+@use "sass:math";
+
+
+
+@import "wp-theme-details.css";
+@import "vars";
+
+
+// MIXINS
+@import "./0-mixins/font-face";
+@import "./0-mixins/input-placeholder";
+
+
+// BOOTSTRAP FUNCTIONS
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+$container-padding-x: 0;
+$container-max-widths: (
+	sm: $container-width,
+	md: $container-width,
+	lg: $container-width,
+	xl: $container-width,
+	xxl: $container-width,
+);
+
+
+
+// RESET CSS
+@import "./_reset";
+
+
+
+
+body {
+	font-family: $ff-main;
+	font-size: $fz-md;
+	letter-spacing: -0.01em;
+	font-weight: normal;
+	color: $c-black;
+	background: #eee;
+}
+
+a {
+	text-decoration: none;
+	color: $c-primary-500;
+
+	transition: 0.2s;
+
+	&:hover,
+	&:focus {
+		outline: none;
+		text-decoration: none;
+		color: $c-primary-600;
+	}
+}
+
+button,
+input,
+textarea,
+select {
+	font-family: $ff-main;
+	font-size: $fz-md;
+}
+
+button,
+input[type="submit"] {
+	cursor: pointer;
+}
+
+
+
+
+
+
+// LIBRARIES
+
+
+// BOOTSTRAP COMPONENTS
+// $enable-negative-margins: true;
+@import "~bootstrap/scss/bootstrap-grid";
+@import "~bootstrap/scss/bootstrap-utilities";
+@import "./1-vendor/bootstrap-overrides";
+
+
+
+// MODIFIERS
+
+
+
+
+// COMPONENTS AND ELEMENTS
+
+@import './2-modifiers/fade';
+@import './2-modifiers/color';
+@import './2-modifiers/type';
+
+@import './3-components/form-controls/field';
+@import './3-components/buttons';
+@import './3-components/dividers';
+@import './3-components/absatz';
+@import './3-components/fluid-video';
+
+@import './3-components/elementor-text';
+
+
+// INDEPENDENT PARTIALS
+
+@import './3-components/header/header';
+@import './3-components/footer/footer';
+
+
+// PAGES AND TEMPLATES
+
+@import './4-templates/front-page';
+
+@import './4-templates/blog-index';
+@import './4-templates/blog-archive';
+@import './4-templates/blog-single';
+
+@import './4-templates/woo-index';
+@import './4-templates/woo-category';
+@import './4-templates/woo-single';

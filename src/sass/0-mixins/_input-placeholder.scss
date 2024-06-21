@@ -1,0 +1,48 @@
+@mixin placeholder( $color: gray, $focus-color: gray, $transition: null ) {
+
+    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $color;
+        opacity: 1; /* Firefox */
+
+        @if ($transition) {
+            transition: $transition;
+        }
+    }
+    
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: $color;
+        
+        @if ($transition) {
+            transition: $transition;
+        }
+    }
+    
+    &::-ms-input-placeholder { /* Microsoft Edge */
+        color: $color;
+
+        @if ($transition) {
+            transition: $transition;
+        }
+    }
+
+
+    &:focus {
+
+        &::placeholder {
+            color: $focus-color;
+            opacity: 1;
+        }
+        
+        &:-ms-input-placeholder {
+            color: $focus-color;
+        }
+        
+        &::-ms-input-placeholder {
+            color: $focus-color;
+        }
+
+    }
+
+
+}
+

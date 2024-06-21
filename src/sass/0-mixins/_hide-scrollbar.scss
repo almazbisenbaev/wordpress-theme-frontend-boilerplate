@@ -1,0 +1,9 @@
+@mixin hideScrollbar {
+    &::-webkit-scrollbar {
+        width: 0;  /* Remove scrollbar space */
+        background: transparent;  /* Optional: just make scrollbar invisible */
+    }
+    &::-webkit-scrollbar-thumb {
+        background: transparent; /* Optional: show position indicator in red */
+    }
+}

@@ -1,0 +1,17 @@
+.container-padding {
+    padding-right: $pagepadding;
+    padding-left: $pagepadding;
+}
+
+.container-narrow {
+    @media (min-width: 1200px){
+        max-width: 1100px;
+    }
+}
+
+.container {
+
+    @media (min-width: 1600px){
+        max-width: 1440px;
+    }
+}

@@ -1,0 +1,82 @@
+// Generates classnames for opacity, .fade-50 stands for .5 opacity
+
+$fade-number: 0;
+
+@for $i from 11 through 1 {
+
+    .fade-#{$fade-number} {
+        opacity: math.div($fade-number, 100);
+    }
+
+    $fade-number: $fade-number + 10;
+
+}
+
+
+
+@media screen and (min-width: 576px){
+
+    $fade-number: 0;
+
+    @for $i from 11 through 1 {
+
+        .fade-sm-#{$fade-number} {
+            opacity: math.div($fade-number, 100);
+        }
+    
+        $fade-number: $fade-number + 10;
+    
+    }
+
+}
+
+
+@media screen and (min-width: 768px){
+
+    $fade-number: 0;
+
+    @for $i from 11 through 1 {
+
+        .fade-md-#{$fade-number} {
+            opacity: math.div($fade-number, 100);
+        }
+    
+        $fade-number: $fade-number + 10;
+    
+    }
+
+}
+
+
+@media screen and (min-width: 992px){
+
+    $fade-number: 0;
+
+    @for $i from 11 through 1 {
+
+        .fade-lg-#{$fade-number} {
+            opacity: math.div($fade-number, 100);
+        }
+    
+        $fade-number: $fade-number + 10;
+    
+    }
+
+}
+
+
+@media screen and (min-width: 1200px){
+
+    $fade-number: 0;
+
+    @for $i from 11 through 1 {
+
+        .fade-xl-#{$fade-number} {
+            opacity: math.div($fade-number, 100);
+        }
+    
+        $fade-number: $fade-number + 10;
+    
+    }
+
+}
