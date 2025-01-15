@@ -1,0 +1,30 @@
+.divider {
+    border: none;
+    background: rgba(#000, .1);
+    height: 1px;
+}
+
+.divider-space-xs {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.divider-space-sm {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.divider-space-md {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.divider-space-lg {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.divider-space-xl {
+    margin-top: 48px;
+    margin-bottom: 48px;
+}

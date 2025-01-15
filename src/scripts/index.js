@@ -11,5 +11,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
 import './input-states';
 import './textarea-autoheight';
-
-import './example-module';

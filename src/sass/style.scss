@@ -1,28 +1,26 @@
 @use "sass:math";
 
-
-
+// Import WP theme details
 @import "wp-theme-details.css";
 @import "vars";
 
+// Import Bootstrap
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 // MIXINS
 @import "./0-mixins/font-face";
 @import "./0-mixins/input-placeholder";
 
-
-// BOOTSTRAP FUNCTIONS
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-
+// Configure Bootstrap container
 $container-padding-x: 0;
 $container-max-widths: (
-	sm: $container-width,
-	md: $container-width,
-	lg: $container-width,
-	xl: $container-width,
-	xxl: $container-width,
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1400px
 );
 
 
@@ -31,20 +29,28 @@ $container-max-widths: (
 @import "./_reset";
 
 
+@font-face {
+	font-family: 'BDO Grotesk';
+	src: url('../../assets/fonts/BDOGrotesk/BDOGrotesk-VF.woff2') format('woff2-variations');
+	font-weight: 100 900;
+	font-stretch: 75% 125%;
+	font-style: normal;
+}
 
 
 body {
 	font-family: $ff-main;
 	font-size: $fz-md;
-	letter-spacing: -0.01em;
-	font-weight: normal;
-	color: $c-black;
-	background: #eee;
+	color: $c-text;
+	background-color: $c-gray-100;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 a {
 	text-decoration: none;
-	color: $c-primary-500;
+	color: $c-text;
 
 	transition: 0.2s;
 
@@ -52,7 +58,7 @@ a {
 	&:focus {
 		outline: none;
 		text-decoration: none;
-		color: $c-primary-600;
+		color: $c-text;
 	}
 }
 
@@ -86,23 +92,20 @@ input[type="submit"] {
 
 
 // MODIFIERS
-
+@import './2-modifiers/fade';
+@import './2-modifiers/color';
+@import './2-modifiers/type';
 
 
 
 // COMPONENTS AND ELEMENTS
 
-@import './2-modifiers/fade';
-@import './2-modifiers/color';
-@import './2-modifiers/type';
-
-@import './3-components/form-controls/field';
-@import './3-components/buttons';
-@import './3-components/dividers';
+@import './3-components/button';
+@import './3-components/spacer';
+@import './3-components/divider';
 @import './3-components/absatz';
 @import './3-components/fluid-video';
-
-@import './3-components/elementor-text';
+@import './3-components/section';
 
 
 // INDEPENDENT PARTIALS
@@ -113,12 +116,17 @@ input[type="submit"] {
 
 // PAGES AND TEMPLATES
 
+@import './4-templates/page-template-default';
 @import './4-templates/front-page';
 
 @import './4-templates/blog-index';
-@import './4-templates/blog-archive';
 @import './4-templates/blog-single';
 
-@import './4-templates/woo-index';
-@import './4-templates/woo-category';
-@import './4-templates/woo-single';
+@import './5-woo/common';
+@import './5-woo/pagination';
+@import './5-woo/cart';
+@import './5-woo/checkout';
+@import './5-woo/archive';
+@import './5-woo/single';
+@import './5-woo/my-account';
+

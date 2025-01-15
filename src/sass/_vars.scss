@@ -3,46 +3,30 @@
 
 // COLORS
 
-$c-black: #1B1D25;
+$c-text: #000;
 
-$c-primary-300: #56cf8d;
-$c-primary-400: #4bb67b;
-$c-primary-500: #369561;
-$c-primary-600: #1a7242;
-$c-primary-700: #0e4a29;
+$c-gray-100: #F0F0F0;
+$c-gray-200: #E1E1E1;
+$c-gray-300: #B3B3B3;
+$c-gray-400: #A5A5A5;
+$c-gray-500: #9f9f9f;
 
-$c-accent-400: #4793f1;
-$c-accent-500: #3a8aec;
-$c-accent-600: #2466b6;
-$c-accent-700: #1a539a;
-$c-accent-800: #103d73;
-
-$c-gray-100: #f1f3f6;
-$c-gray-200: #e0e5ea;
-$c-gray-300: #BFC8D2;
-$c-gray-400: #8F959B;
-$c-gray-500: #797D89;
-$c-gray-1000: #44454A;
-
-$c-warning: #ff9747;
-$c-good: #08c0a5;
-$c-bad: #ED1F24;
+$c-warning: yellow;
+$c-good: green;
+$c-bad: red;
 
 
 
 // FONTS
 
-$fz-1: 56px;
-$fz-2: 48px;
-$fz-3: 40px;
+$fz-1: 80px;
+$fz-2: 64px;
+$fz-3: 48px;
 $fz-4: 32px;
 $fz-5: 24px;
 $fz-6: 20px;
 
-$fz-display-1: 96px;
-$fz-display-2: 72px;
-
-$ff-main: "Inter", sans-serif;
+$ff-main: 'BDO Grotesk', sans-serif;
 
 
 $fz-base: 1rem; // = 16px
@@ -59,31 +43,32 @@ $fz-xxl: $fz-base * 1.5; // 24px
 
 // SIZINGS
 
-$pagepadding: 20px;
-$container-width: 1320px;
+$pagepadding: 24px;
+$container-width: 1400px;
 
 
 
 
-// Controller sizes
+// Button sizes
 
-$input-height-sm: 48px;
-$input-height-md: 64px;
-$input-height-lg: 72px;
-$input-height-xl: 88px;
-
-$btn-height-sm: 48px; 
-$btn-height-md: 64px;
-$btn-height-lg: 72px;
-$btn-height-xl: 88px;
+$btn-height-sm: 32px; 
+$btn-height-md: 48px;
+$btn-height-lg: 56px;
+$btn-height-xl: 72px;
 
 
 
 // TRANSITIONS
 
-$trans-timing: cubic-bezier(0.45, 0, 0.55, 1);
+$trans-timing: cubic-bezier(0.65, 0, 0.35, 1);
 
 $trans-fast: 0.15s $trans-timing;
 $trans-medium: 0.3s $trans-timing;
 $trans-slow: 0.6s $trans-timing;
 $trans-xslow: 0.9s $trans-timing;
+
+
+// Z Indexes
+
+$z-header: 100;
+$z-popups: 500;

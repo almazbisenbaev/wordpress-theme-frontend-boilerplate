@@ -36,6 +36,7 @@
     "dependencies": {
         "bootstrap": "^5.2.1",
         "hookahjs": "^0.0.5",
+        "simple-parallax-js": "^6.0.1",
         "smooth-scroll": "^16.1.3"
     }
 }
