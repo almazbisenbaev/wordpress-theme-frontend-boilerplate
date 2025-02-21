@@ -1,49 +1,44 @@
 const Webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BeautifyHtmlWebpackPlugin = require('beautify-html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const common = require('./webpack.common.js');
-
 
 module.exports = merge(common, {
   mode: 'production',
-  // mode: 'development',
-  // devtool: 'source-map',
-
   stats: 'errors-only',
   bail: true,
   output: {
-    filename: 'js/[name].js', // 'js/[name].[chunkhash:8].js'
-    chunkFilename: 'js/[name].chunk.js', // 'js/[name].[chunkhash:8].chunk.js'
+    filename: 'js/main.js',
+    chunkFilename: 'js/[name].chunk.js',
+    clean: true
+  },
+
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true,
+          },
+        },
+      }),
+    ],
+    splitChunks: {
+      chunks: 'all',
+    },
   },
 
   plugins: [
-
     new Webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
 
-    new Webpack.optimize.ModuleConcatenationPlugin(),
-
     new MiniCssExtractPlugin({
       filename: 'style.css',
-      minimize: false,
+      chunkFilename: 'css/[name].chunk.css'
     }),
-
-    new BeautifyHtmlWebpackPlugin({
-      "indent_size": 2,
-      "indent_with_tabs": true,
-      "end_with_newline": true,
-      "indent_level": 0,
-      "preserve_newlines": true,
-      "max_preserve_newlines": 5,
-    }),
-
-    // new StylelintPlugin({
-    //   files: '**/*.css', // Specify the files to be linted (CSS files)
-    //   fix: true, // Automatically fix linting errors if possible
-    // }),
-
   ],
 
   module: {
@@ -63,7 +58,15 @@ module.exports = merge(common, {
         use : [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          'sass-loader'
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                quietDeps: true,
+                api: 'modern'
+              }
+            }
+          }
         ]
       }
     ]

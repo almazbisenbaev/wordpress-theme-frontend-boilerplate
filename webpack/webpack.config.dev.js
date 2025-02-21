@@ -5,26 +5,40 @@
 
 const Path = require('path');
 const Webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = merge(common, {
 	mode: 'development',
-	devtool: 'cheap-eval-source-map',
+	devtool: 'eval-cheap-source-map',
 	output: {
 		chunkFilename: 'js/[name].chunk.js'
 	},
 	devServer: {
-		inline: true,
 		hot: true,
-		index: 'index.html',
 		liveReload: true,
-		watchContentBase: true,
-		contentBase: Path.join(__dirname, '../src'),
+		static: {
+			directory: Path.join(__dirname, '../src'),
+			watch: true
+		},
+		historyApiFallback: true,
+		port: 'auto',
+		open: true,
+		allowedHosts: 'all',
+		client: {
+			overlay: false,
+			progress: true,
+		},
 	},
 	plugins: [
 		new Webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('development')
+		}),
+		new ESLintPlugin({
+			emitWarning: true,
+			fix: true,
+			files: Path.resolve(__dirname, '../src')
 		})
 	],
 	module: {
@@ -32,21 +46,25 @@ module.exports = merge(common, {
 			{
 				test: /\.js$/,
 				include: Path.resolve(__dirname, '../src'),
-				enforce: 'pre',
-				loader: 'eslint-loader',
-				options: {
-					emitWarning: true,
-					fix: true,
+				use: {
+					loader: 'babel-loader'
 				}
 			},
 			{
-				test: /\.js$/,
-				include: Path.resolve(__dirname, '../src'),
-				loader: 'babel-loader'
-			},
-			{
 				test: /\.s?css$/i,
-				use: ['style-loader', 'css-loader?sourceMap=false', 'sass-loader']
+				use: [
+					'style-loader',
+					'css-loader',
+					{
+						loader: 'sass-loader',
+						options: {
+							sassOptions: {
+								quietDeps: true,
+								api: 'modern'
+							}
+						}
+					}
+				]
 			}
 		]
 	}

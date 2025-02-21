@@ -51,7 +51,7 @@ All the changes shoudl be made only inside the `/src/` folder. Don't touch the `
 
 #### HTML
 
-Apart from the HTML page templates, there is a folder called `html-partials` for reusable HTML components.
+...
 
 ---
 

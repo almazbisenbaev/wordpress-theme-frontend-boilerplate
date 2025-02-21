@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // Generates classnames for opacity, .fade-50 stands for .5 opacity
 
 $fade-number: 0;

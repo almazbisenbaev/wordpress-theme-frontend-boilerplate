@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<%= require('html-loader!./html-partials/_head.html') %>
-
-    <link rel="stylesheet" href="https://staging.silverskincoffee.ie/wp-includes/css/dist/block-library/style.min.css?ver=6.6.2">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 
 	
-<%= require('html-loader!./html-partials/_header.html') %>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../assets/images/example.svg" alt="">
+                <div>My Theme</div>
+            </div>
+        </div>
+    </header>
+	
+    
+    <div class="container">
+        <h1>PAGE.PHP</h1>
+    </div>
 
 
-<h1>PAGE.PHP</h1>
-
-
-<%= require('html-loader!./html-partials/_footer.html') %>
-
-
-
-<%= require('html-loader!./html-partials/_scripts.html') %>
+    <footer>
+        <div class="container">
+            Footer goes here
+        </div>
+    </footer>
 
 
 </body>
-
 </html>

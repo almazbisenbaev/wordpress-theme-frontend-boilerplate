@@ -2,30 +2,34 @@
 <html>
 
 <head>
-	<%= require('html-loader!./html-partials/_head.html') %>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 
 
-<%= require('html-loader!./html-partials/_header.html') %>
+	<header>
+		<div class="container">
+			<div class="logo">
+				<img src="../assets/images/example.svg" alt="">
+				<div>My Theme</div>
+			</div>
+		</div>
+	</header>
+
+
+	<div class="" style="text-align: center; padding: 120px 20px; margin-bottom: 120px;">
+		<h1>COLLECTION OF COMPONENTS THAT CAN BE REUSED THROUGHOUT THE THEME</h1>
+	</div>
 
 
 
-<div class="" style="text-align: center; padding: 120px 20px; margin-bottom: 120px;">
-	<h1>COLLECTION OF COMPONENTS THAT CAN BE REUSED THROUGHOUT THE THEME</h1>
-</div>
-
-
-
-
-
-
-<%= require('html-loader!./html-partials/_footer.html') %>
-
-
-
-<%= require('html-loader!./html-partials/_scripts.html') %>
+	<footer>
+		<div class="container">
+			Footer goes here
+		</div>
+	</footer>
 
 
 </body>

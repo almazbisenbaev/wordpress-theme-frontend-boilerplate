@@ -2,23 +2,33 @@
 <html lang="en">
 
 <head>
-	<%= require('html-loader!./html-partials/_head.html') %>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 
 	
-<%= require('html-loader!./html-partials/_header.html') %>
+	<header>
+		<div class="container">
+			<div class="logo">
+				<img src="../assets/images/example.svg" alt="">
+				<div>My Theme</div>
+			</div>
+		</div>
+	</header>
 
 
-<h1>Empty cart template</h1>
+	<div class="container">
+		<h1>Empty cart template</h1>
+	</div>
 
 
-<%= require('html-loader!./html-partials/_footer.html') %>
-
-
-
-<%= require('html-loader!./html-partials/_scripts.html') %>
+	<footer>
+		<div class="container">
+			Footer goes here
+		</div>
+	</footer>
 
 
 </body>

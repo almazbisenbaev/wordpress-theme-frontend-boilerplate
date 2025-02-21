@@ -1,17 +1,37 @@
+// Import all modules first
 @use "sass:math";
-
-// Import WP theme details
-@import "wp-theme-details.css";
-@import "vars";
-
-// Import Bootstrap
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-
-// MIXINS
-@import "./0-mixins/font-face";
-@import "./0-mixins/input-placeholder";
+@use "sass:color";
+@use "wp-theme-details.css" as *;
+@use "vars" as *;
+@use "~bootstrap/scss/bootstrap" as bootstrap;
+@use "~bootstrap/scss/bootstrap-grid" as grid;
+@use "~bootstrap/scss/bootstrap-utilities" as utils;
+@use "./0-mixins/font-face" as *;
+@use "./0-mixins/input-placeholder" as *;
+@use "./_reset" as *;
+@use "./1-vendor/bootstrap-overrides" as *;
+@use './2-modifiers/fade' as *;
+@use './2-modifiers/color' as *;
+@use './2-modifiers/type' as *;
+@use './3-components/button' as *;
+@use './3-components/spacer' as *;
+@use './3-components/divider' as *;
+@use './3-components/absatz' as *;
+@use './3-components/fluid-video' as *;
+@use './3-components/section' as *;
+@use './3-components/header/header' as *;
+@use './3-components/footer/footer' as *;
+@use './4-templates/page-template-default' as *;
+@use './4-templates/front-page' as *;
+@use './4-templates/blog-index' as *;
+@use './4-templates/blog-single' as *;
+@use './5-woo/common' as *;
+@use './5-woo/pagination' as *;
+@use './5-woo/cart' as *;
+@use './5-woo/checkout' as *;
+@use './5-woo/archive' as *;
+@use './5-woo/single' as *;
+@use './5-woo/my-account' as *;
 
 // Configure Bootstrap container
 $container-padding-x: 0;
@@ -26,8 +46,6 @@ $container-max-widths: (
 
 
 // RESET CSS
-@import "./_reset";
-
 
 @font-face {
 	font-family: 'BDO Grotesk';
@@ -85,48 +103,12 @@ input[type="submit"] {
 
 // BOOTSTRAP COMPONENTS
 // $enable-negative-margins: true;
-@import "~bootstrap/scss/bootstrap-grid";
-@import "~bootstrap/scss/bootstrap-utilities";
-@import "./1-vendor/bootstrap-overrides";
-
-
 
 // MODIFIERS
-@import './2-modifiers/fade';
-@import './2-modifiers/color';
-@import './2-modifiers/type';
-
-
 
 // COMPONENTS AND ELEMENTS
 
-@import './3-components/button';
-@import './3-components/spacer';
-@import './3-components/divider';
-@import './3-components/absatz';
-@import './3-components/fluid-video';
-@import './3-components/section';
-
-
 // INDEPENDENT PARTIALS
 
-@import './3-components/header/header';
-@import './3-components/footer/footer';
-
-
 // PAGES AND TEMPLATES
-
-@import './4-templates/page-template-default';
-@import './4-templates/front-page';
-
-@import './4-templates/blog-index';
-@import './4-templates/blog-single';
-
-@import './5-woo/common';
-@import './5-woo/pagination';
-@import './5-woo/cart';
-@import './5-woo/checkout';
-@import './5-woo/archive';
-@import './5-woo/single';
-@import './5-woo/my-account';
 

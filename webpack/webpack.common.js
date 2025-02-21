@@ -1,9 +1,8 @@
 const Path = require('path');
 const webpack = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -11,47 +10,67 @@ module.exports = {
   },
   output: {
     path: Path.join(__dirname, '../build'),
-    filename: 'js/[name].js'
-  },
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          output: {
-            comments: false
-          }
-        }
-      })
-    ]
+    filename: 'js/[name].js',
+    assetModuleFilename: '[path][name][ext]'
   },
   plugins: [
-
     new CleanWebpackPlugin(),
 
-    new CopyWebpackPlugin([
-      { from: Path.resolve(__dirname, '../assets'), to: 'assets' },
-      { from: Path.resolve(__dirname, '../wp-content-uploads'), to: 'wp-content-uploads' },
-    ]),
-
-    new HtmlWebpackPlugin({
-      minify: false, filename: 'components.html', template: Path.resolve(__dirname, '../src/components.html'), 
-    }),
-    new HtmlWebpackPlugin({
-      minify: false, filename: 'index.html', template: Path.resolve(__dirname, '../src/index.html'), 
-    }),
-    new HtmlWebpackPlugin({
-      minify: false, filename: 'cart-empty.html', template: Path.resolve(__dirname, '../src/cart-empty.html'), 
-    }),
-    new HtmlWebpackPlugin({
-      minify: false, filename: 'page-template-default.html', template: Path.resolve(__dirname, '../src/page-template-default.html'), 
-    }),
-    new HtmlWebpackPlugin({
-      minify: false, filename: 'blog-index.html', template: Path.resolve(__dirname, '../src/blog-index.html'), 
-    }),
-    new HtmlWebpackPlugin({
-      minify: false, filename: 'blog-single.html', template: Path.resolve(__dirname, '../src/blog-single.html'), 
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: Path.resolve(__dirname, '../assets'), to: 'assets', globOptions: { follow: true } },
+        { from: Path.resolve(__dirname, '../wp-content-uploads'), to: 'wp-content-uploads', globOptions: { follow: true } },
+      ]
     }),
 
+    new HtmlWebpackPlugin({
+      minify: false,
+      filename: 'components.html',
+      template: Path.resolve(__dirname, '../src/components.html'),
+      templateParameters: {
+        require: require
+      }
+    }),
+    new HtmlWebpackPlugin({
+      minify: false,
+      filename: 'index.html',
+      template: Path.resolve(__dirname, '../src/index.html'),
+      templateParameters: {
+        require: require
+      }
+    }),
+    new HtmlWebpackPlugin({
+      minify: false,
+      filename: 'cart-empty.html',
+      template: Path.resolve(__dirname, '../src/cart-empty.html'),
+      templateParameters: {
+        require: require
+      }
+    }),
+    new HtmlWebpackPlugin({
+      minify: false,
+      filename: 'page-template-default.html',
+      template: Path.resolve(__dirname, '../src/page-template-default.html'),
+      templateParameters: {
+        require: require
+      }
+    }),
+    new HtmlWebpackPlugin({
+      minify: false,
+      filename: 'blog-index.html',
+      template: Path.resolve(__dirname, '../src/blog-index.html'),
+      templateParameters: {
+        require: require
+      }
+    }),
+    new HtmlWebpackPlugin({
+      minify: false,
+      filename: 'blog-single.html',
+      template: Path.resolve(__dirname, '../src/blog-single.html'),
+      templateParameters: {
+        require: require
+      }
+    }),
   ],
   resolve: {
     alias: {
@@ -67,12 +86,24 @@ module.exports = {
       },
       {
         test: /\.(ico|jpg|jpeg|png|gif|mp4|webm|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: '[path][name].[ext]'
+        type: 'asset/resource'
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+            options: {
+              preprocessor: (content, loaderContext) => {
+                let result = content.replace(/<%=\s*require\('html-loader!\.(.*?)'\)\s*%>/g, (match, path) => {
+                  const relativePath = './src' + path;
+                  return `<%= require('${relativePath}') %>`;
+                });
+                return result;
+              }
+            }
           }
-        }
+        ]
       },
     ]
   }
