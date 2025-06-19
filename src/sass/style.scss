@@ -3,16 +3,28 @@
 @use "sass:color";
 @use "wp-theme-details.css" as *;
 @use "vars" as *;
+
+
+// Mixins
+@use "./0-mixins/font-face" as *;
+@use "./0-mixins/input-placeholder" as *;
+
+
+// BOOTSTRAP
+@use './1-vendor/bootstrap-variables';
 @use "~bootstrap/scss/bootstrap" as bootstrap;
 @use "~bootstrap/scss/bootstrap-grid" as grid;
 @use "~bootstrap/scss/bootstrap-utilities" as utils;
-@use "./0-mixins/font-face" as *;
-@use "./0-mixins/input-placeholder" as *;
-@use "./_reset" as *;
 @use "./1-vendor/bootstrap-overrides" as *;
+
+@use "./_reset" as *;
+
+
+// Utilities
 @use './2-modifiers/fade' as *;
 @use './2-modifiers/color' as *;
 @use './2-modifiers/type' as *;
+
 @use './3-components/button' as *;
 @use './3-components/spacer' as *;
 @use './3-components/divider' as *;
@@ -21,10 +33,15 @@
 @use './3-components/section' as *;
 @use './3-components/header/header' as *;
 @use './3-components/footer/footer' as *;
+
+
+// Templates and pages
 @use './4-templates/page-template-default' as *;
 @use './4-templates/front-page' as *;
 @use './4-templates/blog-index' as *;
 @use './4-templates/blog-single' as *;
+
+// Woocommerce
 @use './5-woo/common' as *;
 @use './5-woo/pagination' as *;
 @use './5-woo/cart' as *;
@@ -33,15 +50,11 @@
 @use './5-woo/single' as *;
 @use './5-woo/my-account' as *;
 
-// Configure Bootstrap container
-$container-padding-x: 0;
-$container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px,
-  xxl: 1400px
-);
+
+
+
+
+
 
 
 
@@ -92,23 +105,3 @@ button,
 input[type="submit"] {
 	cursor: pointer;
 }
-
-
-
-
-
-
-// LIBRARIES
-
-
-// BOOTSTRAP COMPONENTS
-// $enable-negative-margins: true;
-
-// MODIFIERS
-
-// COMPONENTS AND ELEMENTS
-
-// INDEPENDENT PARTIALS
-
-// PAGES AND TEMPLATES
-
