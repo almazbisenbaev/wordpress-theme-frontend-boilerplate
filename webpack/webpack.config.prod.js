@@ -10,7 +10,6 @@ module.exports = merge(common, {
   bail: true,
   output: {
     filename: 'js/main.js',
-    chunkFilename: 'js/[name].chunk.js',
     clean: true
   },
 
@@ -25,9 +24,7 @@ module.exports = merge(common, {
         },
       }),
     ],
-    splitChunks: {
-      chunks: 'all',
-    },
+    splitChunks: false,
   },
 
   plugins: [
@@ -37,7 +34,6 @@ module.exports = merge(common, {
 
     new MiniCssExtractPlugin({
       filename: 'style.css',
-      chunkFilename: 'css/[name].chunk.css'
     }),
   ],
 
@@ -63,7 +59,8 @@ module.exports = merge(common, {
             options: {
               sassOptions: {
                 quietDeps: true,
-                api: 'modern'
+                api: 'modern',
+                outputStyle: 'compressed'
               }
             }
           }

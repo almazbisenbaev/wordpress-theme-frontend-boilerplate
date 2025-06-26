@@ -1,7 +1,7 @@
 
 # Notes
 
-This folder contains the pure-HTML templates (a prototype) for the theme, as well as the source files for CSS and JS. It is used to code and build CSS and JS files for the theme, and the HTML files are used to prototype the WordPress templates before implementing them into WordPress.
+This folder contains the pure-HTML templates (a prototype) for a WordPress theme, as well as the source files for CSS and JS. It is used to code and build CSS and JS files for the theme, and the HTML files are used to prototype the WordPress templates before implementing them into WordPress.
 
 # Folder structure
 

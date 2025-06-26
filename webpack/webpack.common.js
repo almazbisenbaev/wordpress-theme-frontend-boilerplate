@@ -1,5 +1,5 @@
 const Path = require('path');
-const webpack = require('webpack');
+// const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -71,6 +71,7 @@ module.exports = {
         require: require
       }
     }),
+
   ],
   resolve: {
     alias: {
@@ -94,7 +95,8 @@ module.exports = {
           {
             loader: 'html-loader',
             options: {
-              preprocessor: (content, loaderContext) => {
+              // preprocessor: (content, loaderContext) => {
+              preprocessor: (content) => {
                 let result = content.replace(/<%=\s*require\('html-loader!\.(.*?)'\)\s*%>/g, (match, path) => {
                   const relativePath = './src' + path;
                   return `<%= require('${relativePath}') %>`;
