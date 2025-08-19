@@ -1,54 +1,52 @@
 // Import all modules first
-@use "sass:math";
-@use "sass:color";
-@use "wp-theme-details.css" as *;
-@use "vars" as *;
+@import "wp-theme-details.css";
+@import "vars";
 
 
 // Mixins
-@use "./0-mixins/font-face" as *;
-@use "./0-mixins/input-placeholder" as *;
+@import "./0-mixins/font-face";
+@import "./0-mixins/input-placeholder";
 
 
 // BOOTSTRAP
-@use './1-vendor/bootstrap-variables';
-@use "~bootstrap/scss/bootstrap" as bootstrap;
-@use "~bootstrap/scss/bootstrap-grid" as grid;
-@use "~bootstrap/scss/bootstrap-utilities" as utils;
-@use "./1-vendor/bootstrap-overrides" as *;
+@import './1-vendor/bootstrap-variables';
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap-grid";
+@import "~bootstrap/scss/bootstrap-utilities";
+@import "./1-vendor/bootstrap-overrides";
 
-@use "./_reset" as *;
+@import "./_reset";
 
 
 // Utilities
-@use './2-modifiers/fade' as *;
-@use './2-modifiers/color' as *;
-@use './2-modifiers/type' as *;
+@import './2-modifiers/fade';
+@import './2-modifiers/color';
+@import './2-modifiers/type';
 
-@use './3-components/button' as *;
-@use './3-components/spacer' as *;
-@use './3-components/divider' as *;
-@use './3-components/absatz' as *;
-@use './3-components/fluid-video' as *;
-@use './3-components/section' as *;
-@use './3-components/header/header' as *;
-@use './3-components/footer/footer' as *;
+@import './3-components/button';
+@import './3-components/spacer';
+@import './3-components/divider';
+@import './3-components/absatz';
+@import './3-components/fluid-video';
+@import './3-components/section';
+@import './3-components/header/header';
+@import './3-components/footer/footer';
 
 
 // Templates and pages
-@use './4-templates/page-template-default' as *;
-@use './4-templates/front-page' as *;
-@use './4-templates/blog-index' as *;
-@use './4-templates/blog-single' as *;
+@import './4-templates/page-template-default';
+@import './4-templates/front-page';
+@import './4-templates/blog-index';
+@import './4-templates/blog-single';
 
 // Woocommerce
-@use './5-woo/common' as *;
-@use './5-woo/pagination' as *;
-@use './5-woo/cart' as *;
-@use './5-woo/checkout' as *;
-@use './5-woo/archive' as *;
-@use './5-woo/single' as *;
-@use './5-woo/my-account' as *;
+@import './5-woo/common';
+@import './5-woo/pagination';
+@import './5-woo/cart';
+@import './5-woo/checkout';
+@import './5-woo/archive';
+@import './5-woo/single';
+@import './5-woo/my-account';
 
 
 
