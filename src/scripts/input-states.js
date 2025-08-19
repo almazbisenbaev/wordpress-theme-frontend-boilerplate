@@ -1,98 +1,188 @@
-// This script assign classnames to input fields based on how user interacts with them
+// Manages CSS classes for input fields based on user interactions
 
-document.addEventListener("DOMContentLoaded", () => {
+(function() {
+    'use strict';
 
-	const virginizeInput = (el) => {
-		el.classList.add('input-state-is-pristine');
-		el.classList.add('input-state-is-blurred');
-		el.classList.add('input-state-is-empty');
-	};
+    // Configuration object for easy customization
+    const CONFIG = {
+        classes: {
+            pristine: 'input-state-is-pristine',
+            dirty: 'input-state-is-dirty',
+            focused: 'input-state-is-focused',
+            blurred: 'input-state-is-blurred',
+            empty: 'input-state-is-empty',
+            notEmpty: 'input-state-is-not-empty'
+        },
+        selectors: {
+            inputs: 'input[type="text"], input[type="email"], input[type="tel"], input[type="password"], input[type="date"], input[type="number"], input[type="url"], input[type="search"], textarea, select',
+            cf7Fields: '.field-cf7, .textarea-cf7'
+        }
+    };
 
-	const focusInput = (el) => {
-		el.classList.remove('input-state-is-pristine');
-		el.classList.add('input-state-is-dirty');
+    /**
+     * Input State Manager Class
+     */
+    class InputStateManager {
+        constructor(config = {}) {
+            this.config = { ...CONFIG, ...config };
+            this.init();
+        }
 
-		el.classList.remove('input-state-is-blurred');
-		el.classList.add('input-state-is-focused');
-	};
+        /**
+         * Initialize the state manager
+         */
+        init() {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => this.setup());
+            } else {
+                this.setup();
+            }
+        }
 
-	const blurInput = (el) => {
-		el.classList.remove('input-state-is-focused');
-		el.classList.add('input-state-is-blurred');
-	};
+        /**
+         * Setup all input fields
+         */
+        setup() {
+            this.setupDirectInputs();
+            this.setupCF7Fields();
+        }
 
-	const unemptyInput = (el) => {
-		el.classList.remove('input-state-is-pristine');
-		el.classList.add('input-state-is-dirty');
+        /**
+         * Apply initial state to an element
+         */
+        initializeState(element) {
+            const { classes } = this.config;
+            
+            element.classList.add(classes.pristine, classes.blurred, classes.empty);
+            element.classList.remove(classes.dirty, classes.focused, classes.notEmpty);
+        }
 
-		el.classList.remove('input-state-is-empty');
-		el.classList.add('input-state-is-not-empty');
-	};
+        /**
+         * Handle focus state
+         */
+        handleFocus(element) {
+            const { classes } = this.config;
+            
+            element.classList.remove(classes.pristine, classes.blurred);
+            element.classList.add(classes.dirty, classes.focused);
+        }
 
-	const emptyInput = (el) => {
-		el.classList.add('input-state-is-empty');
-		el.classList.remove('input-state-is-not-empty');
-	};
+        /**
+         * Handle blur state
+         */
+        handleBlur(element) {
+            const { classes } = this.config;
+            
+            element.classList.remove(classes.focused);
+            element.classList.add(classes.blurred);
+        }
 
+        /**
+         * Handle input value changes
+         */
+        handleInput(element, inputElement = element) {
+            const { classes } = this.config;
+            const hasValue = this.hasValue(inputElement);
+            
+            if (hasValue) {
+                element.classList.remove(classes.pristine, classes.empty);
+                element.classList.add(classes.dirty, classes.notEmpty);
+            } else {
+                element.classList.remove(classes.notEmpty);
+                element.classList.add(classes.empty);
+            }
+        }
 
+        /**
+         * Check if input has a value
+         */
+        hasValue(input) {
+            if (!input) return false;
+            
+            const value = input.value || '';
+            return value.trim().length > 0;
+        }
 
-	const all_fields = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="password"], input[type="date"], input[type="number"], textarea');
+        /**
+         * Add event listeners to an element
+         */
+        addEventListeners(targetElement, inputElement = targetElement) {
+            // Prevent duplicate listeners
+            if (inputElement.hasAttribute('data-state-managed')) {
+                return;
+            }
+            
+            inputElement.setAttribute('data-state-managed', 'true');
 
-	all_fields.forEach((input) => {
+            inputElement.addEventListener('focus', () => {
+                this.handleFocus(targetElement);
+            });
 
-		virginizeInput(input);
+            inputElement.addEventListener('blur', () => {
+                this.handleBlur(targetElement);
+            });
 
-		input.addEventListener('focus', () => {
-			focusInput(input);
-		});
+            inputElement.addEventListener('input', () => {
+                this.handleInput(targetElement, inputElement);
+            });
 
-		input.addEventListener('blur', () => {
-			blurInput(input);
-		});
-	
-		input.addEventListener('input', function(){
-			if(input.value.length){
-				unemptyInput(input);
-			} else {
-				emptyInput(input);
-			}
-		});
-		
-	});
+            // Handle initial state based on existing value
+            if (this.hasValue(inputElement)) {
+                this.handleInput(targetElement, inputElement);
+            }
+        }
 
+        /**
+         * Setup direct input fields
+         */
+        setupDirectInputs() {
+            const inputs = document.querySelectorAll(this.config.selectors.inputs);
+            
+            inputs.forEach(input => {
+                this.initializeState(input);
+                this.addEventListeners(input);
+            });
+        }
 
-	const all_cf7_fields = document.querySelectorAll('.field-cf7, .textarea-cf7');
+        /**
+         * Setup Contact Form 7 fields
+         */
+        setupCF7Fields() {
+            const cf7Fields = document.querySelectorAll(this.config.selectors.cf7Fields);
+            
+            cf7Fields.forEach(field => {
+                const input = field.querySelector('input') || field.querySelector('textarea') || field.querySelector('select');
+                
+                if (input) {
+                    this.initializeState(field);
+                    this.addEventListeners(field, input);
+                }
+            });
+        }
 
-	all_cf7_fields.forEach(field => {
+        /**
+         * Reinitialize - useful for dynamically added content
+         */
+        reinitialize() {
+            this.setup();
+        }
 
-		let input = field.querySelector('input');
-		if( !input ){ input = field.querySelector('textarea'); }
+        /**
+         * Update configuration
+         */
+        updateConfig(newConfig) {
+            this.config = { ...this.config, ...newConfig };
+        }
+    }
 
-		if(input){
+    // Initialize the Input State Manager
+    const inputStateManager = new InputStateManager();
 
-			virginizeInput(field);
+    // Expose globally for external access if needed
+    window.InputStateManager = {
+        instance: inputStateManager,
+        reinitialize: () => inputStateManager.reinitialize(),
+        updateConfig: (config) => inputStateManager.updateConfig(config)
+    };
 
-			input.addEventListener('focus', () => {
-				focusInput(field);
-			});
-	
-			input.addEventListener('blur', () => {
-				blurInput(field);
-			});
-		
-			input.addEventListener('input', function(){
-				if(input.value.length){
-					unemptyInput(field);
-				} else {
-					emptyInput(field);
-				}
-			});
-
-		}
-
-	});
-
-
-
-	
-});
+})();

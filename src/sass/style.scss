@@ -8,51 +8,6 @@
 @import "./0-mixins/input-placeholder";
 
 
-// BOOTSTRAP
-@import './1-vendor/bootstrap-variables';
-@import "~bootstrap/scss/bootstrap";
-@import "~bootstrap/scss/bootstrap-grid";
-@import "~bootstrap/scss/bootstrap-utilities";
-@import "./1-vendor/bootstrap-overrides";
-
-@import "./_reset";
-
-
-// Utilities
-@import './2-modifiers/fade';
-@import './2-modifiers/color';
-@import './2-modifiers/type';
-
-@import './3-components/button';
-@import './3-components/spacer';
-@import './3-components/divider';
-@import './3-components/absatz';
-@import './3-components/fluid-video';
-@import './3-components/section';
-@import './3-components/header/header';
-@import './3-components/footer/footer';
-
-
-// Templates and pages
-@import './4-templates/page-template-default';
-@import './4-templates/front-page';
-@import './4-templates/blog-index';
-@import './4-templates/blog-single';
-
-// Woocommerce
-@import './5-woo/common';
-@import './5-woo/pagination';
-@import './5-woo/cart';
-@import './5-woo/checkout';
-@import './5-woo/archive';
-@import './5-woo/single';
-@import './5-woo/my-account';
-
-
-
-
-
-
 
 
 
@@ -103,3 +58,45 @@ button,
 input[type="submit"] {
 	cursor: pointer;
 }
+
+
+
+// BOOTSTRAP
+@import './1-vendor/bootstrap-variables';
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap-grid";
+@import "~bootstrap/scss/bootstrap-utilities";
+@import "./1-vendor/bootstrap-overrides";
+
+@import "./_reset";
+
+
+// Utilities
+@import './2-modifiers/fade';
+@import './2-modifiers/color';
+@import './2-modifiers/type';
+
+@import './3-components/button';
+@import './3-components/spacer';
+@import './3-components/divider';
+@import './3-components/absatz';
+@import './3-components/fluid-video';
+@import './3-components/section';
+@import './3-components/header/header';
+@import './3-components/footer/footer';
+
+
+// Templates and pages
+@import './4-templates/page-template-default';
+@import './4-templates/front-page';
+@import './4-templates/blog-index';
+@import './4-templates/blog-single';
+
+// Woocommerce
+@import './5-woo/common';
+@import './5-woo/pagination';
+@import './5-woo/cart';
+@import './5-woo/checkout';
+@import './5-woo/archive';
+@import './5-woo/single';
+@import './5-woo/my-account';
