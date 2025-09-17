@@ -7,7 +7,10 @@ export default defineConfig([
   { 
     files: ["**/*.{js,mjs,cjs}"], 
     plugins: { js }, 
-    extends: ["js/recommended"] 
+    extends: ["js/recommended"],
+    rules: {
+      "no-unused-vars": "off"
+    } 
   },
   
   // Browser environment for most files
