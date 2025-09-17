@@ -11,15 +11,17 @@ module.exports = {
   output: {
     path: Path.join(__dirname, '../build'),
     filename: 'js/[name].js',
-    assetModuleFilename: '[path][name][ext]'
+    assetModuleFilename: ({ filename }) => {
+      return filename.replace('src/', '');
+    }
   },
   plugins: [
     new CleanWebpackPlugin(),
 
     new CopyWebpackPlugin({
       patterns: [
-        { from: Path.resolve(__dirname, '../assets'), to: 'assets', globOptions: { follow: true } },
-        { from: Path.resolve(__dirname, '../uploads'), to: 'uploads', globOptions: { follow: true } },
+        { from: Path.resolve(__dirname, '../src/assets'), to: 'assets', globOptions: { follow: true } },
+        { from: Path.resolve(__dirname, '../src/uploads'), to: 'uploads', globOptions: { follow: true } },
       ]
     }),
 
@@ -98,10 +100,20 @@ module.exports = {
               // preprocessor: (content, loaderContext) => {
               preprocessor: (content) => {
                 let result = content.replace(/<%=\s*require\('html-loader!\.(.*?)'\)\s*%>/g, (match, path) => {
-                  const relativePath = './src' + path;
+                  const relativePath = '.' + path;
                   return `<%= require('${relativePath}') %>`;
                 });
                 return result;
+              },
+              sources: {
+                list: [
+                  "...",
+                  {
+                    tag: "img",
+                    attribute: "src",
+                    type: "src"
+                  }
+                ]
               }
             }
           }

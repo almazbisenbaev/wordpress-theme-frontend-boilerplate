@@ -10,7 +10,7 @@
 
 @font-face {
 	font-family: 'BDO Grotesk';
-	src: url('../../assets/fonts/BDOGrotesk/BDOGrotesk-VF.woff2') format('woff2-variations');
+	src: url('../assets/fonts/BDOGrotesk/BDOGrotesk-VF.woff2') format('woff2-variations');
 	font-weight: 100 900;
 	font-stretch: 75% 125%;
 	font-style: normal;
@@ -109,3 +109,8 @@ $container-max-widths: (
 @import './5-woo/archive';
 @import './5-woo/single';
 @import './5-woo/my-account';
+
+
+.example-image-url {
+	background-image: url(../assets/images/example.png);
+}
