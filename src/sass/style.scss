@@ -8,11 +8,6 @@
 @import "./0-mixins/input-placeholder";
 
 
-
-
-
-// RESET CSS
-
 @font-face {
 	font-family: 'BDO Grotesk';
 	src: url('../../assets/fonts/BDOGrotesk/BDOGrotesk-VF.woff2') format('woff2-variations');
@@ -20,6 +15,11 @@
 	font-stretch: 75% 125%;
 	font-style: normal;
 }
+
+
+
+// RESET CSS
+@import "./_reset";
 
 
 body {
@@ -78,8 +78,6 @@ $container-max-widths: (
 @import "~bootstrap/scss/bootstrap-grid";
 @import "~bootstrap/scss/bootstrap-utilities";
 @import "./1-vendor/bootstrap-overrides";
-
-@import "./_reset";
 
 
 // Utilities
