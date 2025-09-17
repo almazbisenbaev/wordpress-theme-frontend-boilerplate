@@ -5,7 +5,7 @@ This folder contains the pure-HTML templates (a prototype) for a WordPress theme
 
 # Folder structure
 
-`/wp-content-uploads/` is the equivalent of the `/uploads/` folder on WordPress. That is, if you need to use an image/video that is not a part of the theme, and will eventually end up in wordpress uploads, put that file there.
+`/uploads/` is the equivalent of the `/uploads/` folder on WordPress. That is, if you need to use an image/video that is not a part of the theme, and will eventually end up in wordpress uploads, put that file there.
 
 `/assets/` is the folder that contains assets of the theme (images, videos, fonts, etc.). That folder should end up in the theme folder.
 

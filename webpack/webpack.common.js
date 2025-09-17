@@ -19,7 +19,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: Path.resolve(__dirname, '../assets'), to: 'assets', globOptions: { follow: true } },
-        { from: Path.resolve(__dirname, '../wp-content-uploads'), to: 'wp-content-uploads', globOptions: { follow: true } },
+        { from: Path.resolve(__dirname, '../uploads'), to: 'uploads', globOptions: { follow: true } },
       ]
     }),
 
