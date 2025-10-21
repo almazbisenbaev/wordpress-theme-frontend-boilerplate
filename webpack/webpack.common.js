@@ -97,11 +97,19 @@ module.exports = {
           {
             loader: 'html-loader',
             options: {
-              // preprocessor: (content, loaderContext) => {
-              preprocessor: (content) => {
-                let result = content.replace(/<%=\s*require\('html-loader!\.(.*?)'\)\s*%>/g, (match, path) => {
-                  const relativePath = '.' + path;
-                  return `<%= require('${relativePath}') %>`;
+              preprocessor: (content, loaderContext) => {
+                const fs = require('fs');
+                const path = require('path');
+                
+                // Replace include syntax with actual file content
+                let result = content.replace(/<%=\s*require\(['"](.*?)['"]\)\s*%>/g, (match, filePath) => {
+                  try {
+                    const fullPath = path.resolve(loaderContext.context, filePath);
+                    return fs.readFileSync(fullPath, 'utf8');
+                  } catch (err) {
+                    console.error(`Error loading partial: ${filePath}`, err);
+                    return match;
+                  }
                 });
                 return result;
               },
