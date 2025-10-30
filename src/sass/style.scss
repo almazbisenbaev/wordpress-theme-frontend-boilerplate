@@ -67,17 +67,19 @@ input[type="submit"] {
 
 $container-padding-x: 0;
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px,
-  xxl: 1400px
+  sm: $container-width,
+  md: $container-width,
+  lg: $container-width,
+  xl: $container-width,
+  xxl: $container-width
 );
 
-@import "~bootstrap/scss/bootstrap";
 @import "~bootstrap/scss/bootstrap-grid";
 @import "~bootstrap/scss/bootstrap-utilities";
 @import "./1-vendor/bootstrap-overrides";
+
+
+
 
 
 // Utilities
